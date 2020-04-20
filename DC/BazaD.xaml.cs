@@ -22,24 +22,29 @@ namespace DC
         private void LoadData()
         {
             List<User> items = new List<User>();
-
-            XDocument xdoc = XDocument.Load("C:/DC/config.xml");
-            foreach (XElement phoneElement in xdoc.Element("computers").Elements("user"))
+            try
             {
-                XAttribute nameAttribute = phoneElement.Attribute("name");
-                XAttribute snameAttribute = phoneElement.Attribute("surname");
-                XElement companyElement = phoneElement.Element("computer");
-                XElement priceElement = phoneElement.Element("date");
-                XElement servisTagElement = phoneElement.Element("servistag");
-
-                if (true)
+                XDocument xdoc = XDocument.Load("C:/DC/config.xml");
+                foreach (XElement phoneElement in xdoc.Element("computers").Elements("user"))
                 {
-                    items.Add(new User() { Name = nameAttribute.Value, Surname = snameAttribute.Value, Computer = companyElement.Value, Date = priceElement.Value, ServisTag = servisTagElement.Value });
-                }
-                Console.WriteLine();
-            }
+                    XAttribute nameAttribute = phoneElement.Attribute("name");
+                    XAttribute snameAttribute = phoneElement.Attribute("surname");
+                    XElement companyElement = phoneElement.Element("computer");
+                    XElement priceElement = phoneElement.Element("date");
+                    XElement servisTagElement = phoneElement.Element("servistag");
 
-            lvUsers.ItemsSource = items;
+                    if (true)
+                    {
+                        items.Add(new User() { Name = nameAttribute.Value, Surname = snameAttribute.Value, Computer = companyElement.Value, Date = priceElement.Value, ServisTag = servisTagElement.Value });
+                    }
+
+                }
+                lvUsers.ItemsSource = items;
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Brak pliku C:/DC/config.xml");
+            }
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)

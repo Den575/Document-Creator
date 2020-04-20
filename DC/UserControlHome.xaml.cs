@@ -84,9 +84,8 @@ namespace DC
         private void Button_Click(object sender, RoutedEventArgs e) //Button
         {
 
-            if (FileExists() == false)
+            if (FileExists())
             {
-                MessageBox.Show("Aplikacja nie zostala skonfigurowana");
                 return;
             }
 
@@ -106,7 +105,7 @@ namespace DC
             }
             try
             {
-                Data data = new Data() { Name = tbName.Text, SName = tbSName.Text };
+                Data data = new Data() { Name = tbName.Text, SName = tbSName.Text, Proffesion = tbPosition.Text, ServisTag = tbServisTag.Text };
 
                 var wordApp = new Microsoft.Office.Interop.Word.Application();
 
@@ -116,6 +115,7 @@ namespace DC
                 var wordDocument = wordApp.Documents.Open(OpenIn);
 
                 ReplaceWordApp("<name>", data.NarzednikImie(data.Name), wordDocument);
+                ReplaceWordApp("<stanowisko>", data.Proffesion, wordDocument);
                 ReplaceWordApp("<surname>", data.NarzednikNazwisko(data.SName), wordDocument);
                 ReplaceWordApp("<computer>", ComputerName, wordDocument);
                 ReplaceWordApp("<date>", Date, wordDocument);
@@ -123,6 +123,7 @@ namespace DC
                 ReplaceWordApp("<date2>", Date, wordDocument);
                 ReplaceWordApp("<name&surname> ", $"{data.Name} {data.SName}", wordDocument);
                 ReplaceWordApp("<name&surname1> ", $"{data.Name} {data.SName}", wordDocument);
+                ReplaceWordApp("<stag> ", data.ServisTag, wordDocument);
 
 
 
@@ -145,15 +146,11 @@ namespace DC
 
 
                 btnCreate.Cursor = Cursors.Hand;
-
-
-
-
             }
             catch (System.Runtime.InteropServices.COMException)
             {
 
-                MessageBox.Show("Nie mozna znalezc pliku");
+                MessageBox.Show("Nie mozna znalezc plik wzorzec");
             }
             catch (Exception ex)
             {
@@ -178,6 +175,7 @@ namespace DC
                 MessageBox.Show("Podaj imie i nazwisko");
                 return true;
             }
+
             string nameAndSurname = tbName.Text + tbSName.Text;
             for (int i =0;i<=nameAndSurname.Length-1;i++)
             {
@@ -198,10 +196,18 @@ namespace DC
 
         private bool FileExists()
         {
-            if (File.Exists("C:/DC/savein.txt") && File.Exists("C:/DC/openin.txt"))
+            if (!File.Exists("C:/DC/savein.txt") && File.Exists("C:/DC/openin.txt"))
             {
+                MessageBox.Show("Aplikacja nie została skonfigurowana ERROR 1");
                 return true;
             }
+
+            if (!File.Exists("C:/DC/config.xml"))
+            {
+                MessageBox.Show("Brak pliku C:/DC/config.xml");
+                return true;
+            }
+
             return false;
         }
     }
