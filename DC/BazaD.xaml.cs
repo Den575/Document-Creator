@@ -11,7 +11,7 @@ namespace DC
 
     public partial class BazaD : UserControl
     {
-        
+
         public BazaD()
         {
             InitializeComponent();
@@ -42,12 +42,12 @@ namespace DC
             lvUsers.ItemsSource = items;
         }
 
-        public void Info_Click(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)
         {
 
             User u = lvUsers.SelectedItem as User;
 
-            
+
 
             try
             {
@@ -68,6 +68,26 @@ namespace DC
             {
 
             }
+        }
+
+        private void DeleteAll_Click(object sender, RoutedEventArgs e)
+        {
+            XDocument xdoc = XDocument.Load("C:/DC/config.xml");
+            XElement root = xdoc.Element("computers");
+
+            foreach (XElement xe in root.Elements("user").ToList())
+            {
+                xe.Remove();
+                xdoc.Save("C:/DC/config.xml");
+                LoadData();
+            }
+
+        }
+
+        private void Export_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("Plik został zeksportowany do C:/DC/config.xml");
+            System.Diagnostics.Process.Start(@"C:/DC/config.xml");
         }
     }
 

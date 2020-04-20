@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DC"
              xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
-             mc:Ignorable="d" d:DesignWidth="800"
+             mc:Ignorable="d" d:DesignWidth="930"
              Background="#FFEBEBEB" Height="506.07">
     <Grid>
         <ListView Margin="10,10,10,58.6" Name="lvUsers" FontSize="16">
@@ -19,7 +19,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="DELETE" HorizontalAlignment="Left" Margin="29,464,0,0" VerticalAlignment="Top" Width="117" Click="Info_Click"/>
-        <Button Content="DELETE ALL" HorizontalAlignment="Left" Margin="179,464,0,0" VerticalAlignment="Top" Width="117"/>
+        <Button Content="DELETE" HorizontalAlignment="Left" Margin="100,464,0,0" VerticalAlignment="Top" Width="162" Click="Delete_Click" FontSize="16"/>
+        <Button Content="DELETE ALL" HorizontalAlignment="Left" Margin="400,464,0,0" VerticalAlignment="Top" Width="162" Click="DeleteAll_Click" FontSize="16"/>
+        <Button Content="EXPORT" HorizontalAlignment="Left" Margin="700,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="Export_Click"/>
     </Grid>
 </UserControl>
