@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace DC
 {
     internal class Data
     {
+
         internal string Name { get; set; }
         internal string SName { get; set; }
         internal string Proffesion { get; set; }
@@ -49,6 +51,18 @@ namespace DC
                 value += s;
             }
             return value;
+        }
+
+        internal string EndOfWord(string Name)
+        {
+            if (Name[Name.Length - 1] == 'a')
+            {
+                return "a ";
+            }
+            else
+            {
+                return "ym ";
+            }
         }
 
 

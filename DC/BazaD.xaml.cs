@@ -49,10 +49,12 @@ namespace DC
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            if (FileExists())
+            {
+                return;
+            }
 
             User u = lvUsers.SelectedItem as User;
-
-
 
             try
             {
@@ -77,6 +79,11 @@ namespace DC
 
         private void DeleteAll_Click(object sender, RoutedEventArgs e)
         {
+            if (FileExists())
+            {
+                return;
+            }
+
             XDocument xdoc = XDocument.Load("C:/DC/config.xml");
             XElement root = xdoc.Element("computers");
 
@@ -91,8 +98,27 @@ namespace DC
 
         private void Export_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("Plik został zeksportowany do C:/DC/config.xml");
+            if (FileExists())
+            {
+                return;
+            }
+            
             System.Diagnostics.Process.Start(@"C:/DC/config.xml");
+        }
+
+        public bool FileExists()
+        {
+
+            if (!File.Exists("C:/DC/config.xml"))
+            {
+                MessageBox.Show("Brak pliku C:/DC/config.xml. Zrestartuj aplikację.");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 

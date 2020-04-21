@@ -46,7 +46,7 @@
         <TextBox Foreground="Black" x:Name="tbServisTag" VerticalAlignment="Top" Margin="152,250,537,0" Height="35" FontSize="16" />
 
         <Button x:Name="btnCreate" HorizontalAlignment="Center" Content="CREATE" VerticalAlignment="Bottom" Margin="313,0,282,37" RenderTransformOrigin="0.38,-3.312" Width="353" Click="Button_Click" Height="37" FontSize="16" Foreground="White"/>
-        <RichTextBox HorizontalAlignment="Left" Height="57" Margin="152,320,0,0" VerticalAlignment="Top" Width="259" FontSize="16">
+        <RichTextBox x:Name="rtbInfo" HorizontalAlignment="Left" Height="57" Margin="152,320,0,0" VerticalAlignment="Top" Width="259" FontSize="16">
             <FlowDocument>
                 <Paragraph>
                     <Run/>

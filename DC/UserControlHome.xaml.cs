@@ -83,11 +83,24 @@ namespace DC
 
         private void Button_Click(object sender, RoutedEventArgs e) //Button
         {
+            Data data = new Data() { Name = tbName.Text, SName = tbSName.Text, Proffesion = tbPosition.Text, ServisTag = tbServisTag.Text };
 
             if (FileExists())
             {
                 return;
             }
+
+            using (var sr = new StreamReader("C:/DC/savein.txt"))
+            {
+                SaveIn = sr.ReadToEnd();
+            }
+
+            if (File.Exists($"{SaveIn}{data.Name} {data.SName}.docx"))
+            {
+                MessageBox.Show($"Plik {SaveIn}{data.Name} {data.SName}.docx już istnieje!");
+                return;
+            }
+
 
             XDocument xdoc = XDocument.Load("C:/DC/config.xml");
             XElement root = xdoc.Element("computers");
@@ -105,7 +118,6 @@ namespace DC
             }
             try
             {
-                Data data = new Data() { Name = tbName.Text, SName = tbSName.Text, Proffesion = tbPosition.Text, ServisTag = tbServisTag.Text };
 
                 var wordApp = new Microsoft.Office.Interop.Word.Application();
 
@@ -123,7 +135,9 @@ namespace DC
                 ReplaceWordApp("<date2>", Date, wordDocument);
                 ReplaceWordApp("<name&surname> ", $"{data.Name} {data.SName}", wordDocument);
                 ReplaceWordApp("<name&surname1> ", $"{data.Name} {data.SName}", wordDocument);
-                ReplaceWordApp("<stag> ", data.ServisTag, wordDocument);
+                ReplaceWordApp("<stag> ", data.ServisTag.ToUpper(), wordDocument);
+                ReplaceWordApp("<endofword> ", data.EndOfWord(data.Name), wordDocument);
+                ReplaceWordApp("<anotherinfo>", RichTextB(), wordDocument);
 
 
 
@@ -132,14 +146,8 @@ namespace DC
                     new XAttribute("surname", data.SName),
                     new XElement("computer", ComputerName),
                     new XElement("date", Date),
-                    new XElement("servistag", "TAG")));
+                    new XElement("servistag", data.ServisTag)));
                 xdoc.Save("C:/DC/config.xml");
-
-
-                using (var sr = new StreamReader("C:/DC/savein.txt"))
-                {
-                    SaveIn = sr.ReadToEnd();
-                }
 
                 wordDocument.SaveAs($"{SaveIn}{data.Name} {data.SName}.docx"); //TODO: Niepoprawnie 
                 wordApp.Visible = true;
@@ -169,7 +177,7 @@ namespace DC
 
         public bool CheckedValues() //Sprawdzenie 
         {
-            string inccorectValues = "@!#%&*()/\\}{[]`<>\";~+-=^$?.,";
+            string inccorectValues = "@!#%&*()/\\}{[]`<>\";~+-=^$?.,1234567890";
             if (string.IsNullOrWhiteSpace(tbName.Text) || string.IsNullOrWhiteSpace(tbSName.Text))
             {
                 MessageBox.Show("Podaj imie i nazwisko");
@@ -183,7 +191,7 @@ namespace DC
                 {
                     if (nameAndSurname[i] == inccorectValues[j])
                     {
-                        MessageBox.Show("Imie i nazwisko nie moze zawierac nastepujacych znakow @!#%&*()/\\}{[]`<>\";~+-=^$?.,");
+                        MessageBox.Show("Pola nie mogą zawierac nastepujacych znakow @!#%&*()/\\}{[]`<>\";~+-=^$?.,1234567890");
                         return true;
                     }
                 }
@@ -194,9 +202,16 @@ namespace DC
         return false;
         }
 
+        private string RichTextB()
+        {
+            TextRange textRange = new TextRange(rtbInfo.Document.ContentStart, rtbInfo.Document.ContentEnd);
+            return textRange.Text;
+        }
+
+
         private bool FileExists()
         {
-            if (!File.Exists("C:/DC/savein.txt") && File.Exists("C:/DC/openin.txt"))
+            if (!File.Exists("C:/DC/savein.txt") || !File.Exists("C:/DC/openin.txt"))
             {
                 MessageBox.Show("Aplikacja nie została skonfigurowana ERROR 1");
                 return true;
@@ -204,7 +219,7 @@ namespace DC
 
             if (!File.Exists("C:/DC/config.xml"))
             {
-                MessageBox.Show("Brak pliku C:/DC/config.xml");
+                MessageBox.Show("Brak pliku C:/DC/config.xml. Zrestartuj aplikację.");
                 return true;
             }
 

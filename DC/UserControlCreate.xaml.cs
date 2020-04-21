@@ -62,6 +62,7 @@ namespace DC
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Open the document template";
+            openFileDialog.Filter = "Docx Files|*.docx";
 
             if (openFileDialog.ShowDialog() == true)
             {
