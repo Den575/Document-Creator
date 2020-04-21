@@ -50,6 +50,11 @@ namespace DC
 
         public void btnSave_Accept(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(tb_Save.Text))
+            {
+                MessageBox.Show("Pole musi byc uzupełnione!");
+                return;
+            }
             using (var sw = new StreamWriter("C:/DC/savein.txt"))
             {
                 tb_Save.Text = saveIn;
@@ -73,7 +78,11 @@ namespace DC
 
         public void btnOpen_Accept(object sender, RoutedEventArgs e)
         {
-
+            if (string.IsNullOrWhiteSpace(tb_Open.Text))
+            {
+                MessageBox.Show("Pole musi być uzupełnione!");
+                return;
+            }
 
             using (var sw = new StreamWriter("C:/DC/openin.txt"))
             {

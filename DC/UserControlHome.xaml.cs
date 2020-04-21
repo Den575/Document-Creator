@@ -83,12 +83,18 @@ namespace DC
 
         private void Button_Click(object sender, RoutedEventArgs e) //Button
         {
-            Data data = new Data() { Name = tbName.Text, SName = tbSName.Text, Proffesion = tbPosition.Text, ServisTag = tbServisTag.Text };
-
             if (FileExists())
             {
                 return;
             }
+
+            if (CheckedValues())
+            {
+                return;
+            }
+
+            Data data = new Data() { Name = char.ToUpper(tbName.Text[0]) + tbName.Text.Substring(1), SName = char.ToUpper(tbSName.Text[0]) + tbSName.Text.Substring(1), Proffesion = tbPosition.Text, ServisTag = tbServisTag.Text.ToUpper() };
+
 
             using (var sr = new StreamReader("C:/DC/savein.txt"))
             {
@@ -112,10 +118,7 @@ namespace DC
 
             btnCreate.Cursor = Cursors.Wait;
 
-            if (CheckedValues())
-            {
-                return;
-            }
+
             try
             {
 
@@ -135,7 +138,7 @@ namespace DC
                 ReplaceWordApp("<date2>", Date, wordDocument);
                 ReplaceWordApp("<name&surname> ", $"{data.Name} {data.SName}", wordDocument);
                 ReplaceWordApp("<name&surname1> ", $"{data.Name} {data.SName}", wordDocument);
-                ReplaceWordApp("<stag> ", data.ServisTag.ToUpper(), wordDocument);
+                ReplaceWordApp("<stag> ", data.ServisTag, wordDocument);
                 ReplaceWordApp("<endofword> ", data.EndOfWord(data.Name), wordDocument);
                 ReplaceWordApp("<anotherinfo>", RichTextB(), wordDocument);
 
@@ -162,7 +165,7 @@ namespace DC
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Convert.ToString(ex));
+                MessageBox.Show("Proszę zgłosić błąd:\n"+Convert.ToString(ex));
             }
         }
 
@@ -177,13 +180,14 @@ namespace DC
 
         public bool CheckedValues() //Sprawdzenie 
         {
-            string inccorectValues = "@!#%&*()/\\}{[]`<>\";~+=^$?.,1234567890";
-            if (string.IsNullOrWhiteSpace(tbName.Text) || string.IsNullOrWhiteSpace(tbSName.Text))
+           
+            if (string.IsNullOrWhiteSpace(tbName.Text) || string.IsNullOrWhiteSpace(tbSName.Text) || string.IsNullOrWhiteSpace(tbPosition.Text) || string.IsNullOrWhiteSpace(tbPosition.Text))
             {
-                MessageBox.Show("Podaj imie i nazwisko");
+                MessageBox.Show("Wszystkie pola muszą być uzupełnione!");
                 return true;
             }
 
+            string inccorectValues = "@!#%&*()/\\}{[]<>\";~+=^$?.,1234567890";
             string nameAndSurname = tbName.Text + tbSName.Text;
             for (int i =0;i<=nameAndSurname.Length-1;i++)
             {
@@ -191,7 +195,7 @@ namespace DC
                 {
                     if (nameAndSurname[i] == inccorectValues[j])
                     {
-                        MessageBox.Show("Pola nie mogą zawierac nastepujacych znakow @!#%&*()/\\}{[]`<>\";~+=^$?.,1234567890");
+                        MessageBox.Show("Pola nie mogą zawierac nastepujacych znakow @!#%&*()/\\}{[]<>\";~+=^$?.,1234567890");
                         return true;
                     }
                 }
