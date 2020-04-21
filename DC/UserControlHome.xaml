@@ -8,22 +8,39 @@
              Background="#FFEBEBEB">
     <Grid Height="550" Width="948" Background="#FFEBEBEB">
         <TextBlock ToolTip="Imię użytkownika" Foreground="Black" Text="Name:" VerticalAlignment="Top"  Margin="32,68,842,0" FontSize="16"/>
-        <TextBlock ToolTip="Nazwisko użytkownika" Foreground="Black" Text="Surname:" VerticalAlignment="Top"  Margin="32,104,843,0" FontSize="16"/>
+        <TextBlock ToolTip="Nazwisko użytkownika. Jeżeli nazwisko podwójne to wpisujemy przez myslnik '-'" Foreground="Black" Text="Surname:" VerticalAlignment="Top"  Margin="32,104,843,0" FontSize="16"/>
         <TextBlock ToolTip="Stanowisko użytkownika" Foreground="Black" Text="Position:" VerticalAlignment="Top"  Margin="32,148,843,0" FontSize="16"/>
-        <TextBlock ToolTip="Komputer wydawany użytkoniwku" Foreground="Black" Text="Computer:" VerticalAlignment="Top"  Margin="32,183,842,0" FontSize="16" Height="21"/>
+        <TextBlock ToolTip="Komputer wydawany użytkoniwkowi" Foreground="Black" Text="Computer:" VerticalAlignment="Top"  Margin="32,183,842,0" FontSize="16" Height="21"/>
         <TextBlock ToolTip="Miasto pracy użytkownika" Foreground="Black" Text="City:" VerticalAlignment="Top"  Margin="32,223,843,0" FontSize="16" Height="21"/>
         <TextBlock ToolTip="Servis tag komputera użytkownika" Foreground="Black" Text="Servis Tag:" VerticalAlignment="Top"  Margin="32,264,843,0" FontSize="16" Height="21"/>
-        <TextBlock ToolTip="Pozostałe rzeczy wydawane użytkownikowi np. torba, programy itd." Foreground="Black" Text="Another:" VerticalAlignment="Top"  Margin="32,321,842,0" FontSize="16" Height="26" RenderTransformOrigin="0.476,-1.923"/>
+        <TextBlock ToolTip="Pozostałe przepisywane do użytkownika np. torba, programy itd." Foreground="Black" Text="Another:" VerticalAlignment="Top"  Margin="32,321,842,0" FontSize="16" Height="26" RenderTransformOrigin="0.476,-1.923"/>
         <TextBlock ToolTip="Data wydania komputera" Foreground="Black" Text="Date:" VerticalAlignment="Top"  Margin="578,20,282,0" FontSize="16" Height="34"/>
 
-        <ComboBox Foreground="Black" SelectionChanged="ComboBox_Selected" x:Name="ComboBox1" IsEditable="True" HorizontalAlignment="Left" Margin="151,170,0,0" VerticalAlignment="Top" Width="258"  FontSize="16">
+        <ComboBox Foreground="Black" SelectionChanged="ComboBox_Selected" x:Name="ComboBox1" IsEditable="True" HorizontalAlignment="Left" Margin="151,170,0,0" VerticalAlignment="Top" Width="300"  FontSize="16">
             <ComboBoxItem Content="Lenovo ThinkBook 13s" />
             <ComboBoxItem Content="HP EliteBook 1040"/>
             <ComboBoxItem Content="HP EliteBook 1030"/>
             <ComboBoxItem Content="HP EliteBook x360"/>
+            <ComboBoxItem Content="Dell Precision M3541"/>
+            <ComboBoxItem Content="Dell Latitude 7480"/>
+            <ComboBoxItem Content="Dell Vostro 14 (5471)"/>
+            <ComboBoxItem Content="Dell Vostro 14 (5468)"/>
+            <ComboBoxItem Content="HP EliteBook 830 G5"/>
+            <ComboBoxItem Content="HP ProBook 430 G3"/>
+            <ComboBoxItem Content="Dell Vostro 14"/>
+            <ComboBoxItem Content="Dell Latitude 3330"/>
+            <ComboBoxItem Content="Dell Latitude 3340"/>
+            <ComboBoxItem Content="Dell Latitude 3350"/>
+            <ComboBoxItem Content="Dell Latitude 7250"/>
+            <ComboBoxItem Content="Dell Latitude 7280"/>
+            <ComboBoxItem Content="Dell Latitude 7450"/>
+            <ComboBoxItem Content="Dell Latitude 6320"/>
+            <ComboBoxItem Content="Dell Latitude 6410"/>
+            <ComboBoxItem Content="Dell Latitude 6420"/>
+            <ComboBoxItem Content="Dell Latitude 7510"/>
         </ComboBox>
 
-        <ComboBox Foreground="Black" SelectionChanged="ComboBox_SelectedCity" x:Name="ComboBox2" IsEditable="True" HorizontalAlignment="Left" Margin="152,210,0,0" VerticalAlignment="Top" Width="258"  FontSize="16">
+        <ComboBox Foreground="Black" SelectionChanged="ComboBox_SelectedCity" x:Name="ComboBox2" IsEditable="True" HorizontalAlignment="Left" Margin="152,210,0,0" VerticalAlignment="Top" Width="299"  FontSize="16">
             <ComboBoxItem Content="Kraków" />
             <ComboBoxItem Content="Gdańsk"/>
             <ComboBoxItem Content="Pruszcz Gdański"/>
@@ -40,13 +57,13 @@
             </Calendar.BorderBrush>
         </Calendar>
 
-        <TextBox Foreground="Black" x:Name="tbName" VerticalAlignment="Top" Margin="152,50,538,0" Height="35" FontSize="16" />
-        <TextBox Foreground="Black" x:Name="tbSName" VerticalAlignment="Top" Margin="151,90,538,0" Height="35" FontSize="16" />
-        <TextBox Foreground="Black" x:Name="tbPosition" VerticalAlignment="Top" Margin="150,130,538,0" Height="35" FontSize="16" />
-        <TextBox Foreground="Black" x:Name="tbServisTag" VerticalAlignment="Top" Margin="152,250,537,0" Height="35" FontSize="16" />
+        <TextBox Foreground="Black" x:Name="tbName" VerticalAlignment="Top" Margin="152,50,497,0" Height="35" FontSize="16" />
+        <TextBox Foreground="Black" x:Name="tbSName" VerticalAlignment="Top" Margin="151,90,497,0" Height="35" FontSize="16" />
+        <TextBox Foreground="Black" x:Name="tbPosition" VerticalAlignment="Top" Margin="150,130,497,0" Height="35" FontSize="16" />
+        <TextBox Foreground="Black" x:Name="tbServisTag" VerticalAlignment="Top" Margin="152,250,497,0" Height="35" FontSize="16" />
 
         <Button x:Name="btnCreate" HorizontalAlignment="Center" Content="CREATE" VerticalAlignment="Bottom" Margin="313,0,282,37" RenderTransformOrigin="0.38,-3.312" Width="353" Click="Button_Click" Height="37" FontSize="16" Foreground="White"/>
-        <RichTextBox x:Name="rtbInfo" HorizontalAlignment="Left" Height="57" Margin="152,320,0,0" VerticalAlignment="Top" Width="259" FontSize="16">
+        <RichTextBox x:Name="rtbInfo" HorizontalAlignment="Left" Height="73" Margin="152,320,0,0" VerticalAlignment="Top" Width="299" FontSize="16">
             <FlowDocument>
                 <Paragraph>
                     <Run/>

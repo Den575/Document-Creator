@@ -42,7 +42,7 @@ namespace DC
             }
             catch (NullReferenceException)
             {
-                MessageBox.Show("Null"); //TODO dopracowac
+                return;
             }
 
         }
@@ -70,7 +70,7 @@ namespace DC
             }
             catch
             {
-                MessageBox.Show("Null"); //TODO dopracowac
+                return;
             }
 
         }
@@ -177,7 +177,7 @@ namespace DC
 
         public bool CheckedValues() //Sprawdzenie 
         {
-            string inccorectValues = "@!#%&*()/\\}{[]`<>\";~+-=^$?.,1234567890";
+            string inccorectValues = "@!#%&*()/\\}{[]`<>\";~+=^$?.,1234567890";
             if (string.IsNullOrWhiteSpace(tbName.Text) || string.IsNullOrWhiteSpace(tbSName.Text))
             {
                 MessageBox.Show("Podaj imie i nazwisko");
@@ -191,7 +191,7 @@ namespace DC
                 {
                     if (nameAndSurname[i] == inccorectValues[j])
                     {
-                        MessageBox.Show("Pola nie mogą zawierac nastepujacych znakow @!#%&*()/\\}{[]`<>\";~+-=^$?.,1234567890");
+                        MessageBox.Show("Pola nie mogą zawierac nastepujacych znakow @!#%&*()/\\}{[]`<>\";~+=^$?.,1234567890");
                         return true;
                     }
                 }

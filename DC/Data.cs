@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DC
 {
@@ -29,12 +30,27 @@ namespace DC
 
         internal string NarzednikNazwisko(string nazwisko)
         {
-            if (nazwisko[nazwisko.Length - 1] != 'a')
+            string[] surnames = nazwisko.Split('-');
+            string nazwiska ="";
+            List<string> znaczenia = new List<string>();
+            foreach(string s in surnames)
             {
-                return nazwisko;
+                if (s[s.Length - 1] != 'a')
+                {
+                    znaczenia.Add(s);
+                }
+                else
+                {
+                    znaczenia.Add(Chenger(s));
+                }
             }
-
-            return Chenger(nazwisko);
+            
+            foreach(string s in znaczenia)
+            {
+                nazwiska += s+"-";
+            }
+            nazwiska = nazwiska.Remove(nazwiska.Length-1);
+            return nazwiska;
         }
 
         internal string Chenger(string value)
