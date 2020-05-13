@@ -84,10 +84,7 @@ namespace DC
 
         private void Button_Click(object sender, RoutedEventArgs e) //Button
         {
-            if (FileExists())
-            {
-                return;
-            }
+
 
             if (CheckedValues())
             {
@@ -97,10 +94,18 @@ namespace DC
             Data data = new Data() { Name = char.ToUpper(tbName.Text[0]) + tbName.Text.Substring(1).ToLower(), SName = char.ToUpper(tbSName.Text[0]) + tbSName.Text.Substring(1).ToLower(), Proffesion = tbPosition.Text, ServisTag = tbServisTag.Text.ToUpper() };
 
 
-            using (var sr = new StreamReader("C:/DC/savein.txt"))
+            try
             {
-                SaveIn = sr.ReadToEnd();
+                using (var sr = new StreamReader("C:/DC/savein.txt"))
+                {
+                    SaveIn = sr.ReadToEnd();
+                }
             }
+            catch
+            {
+                SaveIn = $"C:/Users/{Environment.UserName}/Downloads/";
+            }
+           
 
             if (File.Exists($"{SaveIn}{data.Name} {data.SName}.docx"))
             {
@@ -217,7 +222,6 @@ namespace DC
         {
             if (!File.Exists("C:/DC/savein.txt") || !File.Exists("C:/DC/WZOR.docx"))
             {
-                MessageBox.Show("Aplikacja nie została skonfigurowana ERROR 1");
                 return true;
             }
 

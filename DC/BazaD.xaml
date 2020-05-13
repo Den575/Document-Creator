@@ -19,8 +19,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="DELETE" HorizontalAlignment="Left" Margin="100,464,0,0" VerticalAlignment="Top" Width="162" Click="Delete_Click" FontSize="16"/>
-        <Button Content="DELETE ALL" HorizontalAlignment="Left" Margin="400,464,0,0" VerticalAlignment="Top" Width="162" Click="DeleteAll_Click" FontSize="16"/>
-        <Button Content="EXPORT" HorizontalAlignment="Left" Margin="700,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="Export_Click"/>
+        <Button Content="DELETE" HorizontalAlignment="Left" Margin="50,464,0,0" VerticalAlignment="Top" Width="162" Click="Delete_Click" FontSize="16"/>
+        <Button Content="DELETE ALL" HorizontalAlignment="Left" Margin="250,464,0,0" VerticalAlignment="Top" Width="162" Click="DeleteAll_Click" FontSize="16"/>
+        <Button Content="EXPORT TO XML" HorizontalAlignment="Left" Margin="450,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="Export_Click"/>
+        <Button Content="EXPORT TO EXEL" HorizontalAlignment="Left" Margin="650,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="ExportExel_Click"/>
     </Grid>
 </UserControl>

@@ -12,6 +12,7 @@ namespace DC
     public partial class BazaD : UserControl
     {
 
+        public List<User> users = new List<User>();
         public BazaD()
         {
             InitializeComponent();
@@ -19,9 +20,11 @@ namespace DC
 
         }
 
-        private void LoadData()
+        private void LoadData() // Load data from db
         {
             List<User> items = new List<User>();
+            users.Clear();
+
             try
             {
                 XDocument xdoc = XDocument.Load("C:/DC/config.xml");
@@ -36,8 +39,8 @@ namespace DC
                     if (true)
                     {
                         items.Add(new User() { Name = nameAttribute.Value, Surname = snameAttribute.Value, Computer = companyElement.Value, Date = priceElement.Value, ServisTag = servisTagElement.Value });
+                        users.Add(new User() { Name = nameAttribute.Value, Surname = snameAttribute.Value, Computer = companyElement.Value, Date = priceElement.Value, ServisTag = servisTagElement.Value });
                     }
-
                 }
                 lvUsers.ItemsSource = items;
             }
@@ -47,7 +50,7 @@ namespace DC
             }
         }
 
-        private void Delete_Click(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e) //Button Delete
         {
             if (FileExists())
             {
@@ -77,7 +80,7 @@ namespace DC
             }
         }
 
-        private void DeleteAll_Click(object sender, RoutedEventArgs e)
+        private void DeleteAll_Click(object sender, RoutedEventArgs e) // Button Delete
         {
             if (FileExists())
             {
@@ -96,7 +99,7 @@ namespace DC
 
         }
 
-        private void Export_Click(object sender, RoutedEventArgs e)
+        private void Export_Click(object sender, RoutedEventArgs e) //Button Export to XML
         {
             
 
@@ -108,7 +111,21 @@ namespace DC
             System.Diagnostics.Process.Start(@"C:/DC/config.xml");
         }
 
-        public bool FileExists()
+
+        private void ExportExel_Click(object sender, RoutedEventArgs e) //Button Export to Exel
+        {
+
+            if (FileExists())
+            {
+                return;
+            }
+
+            ExportExl exl = new ExportExl($"C:/Users/{Environment.UserName}/Downloads/data.xlsx", users);
+            exl.CreateSpreadsheet();
+            exl.Openfile();
+        }
+
+        public bool FileExists() 
         {
 
             if (!File.Exists("C:/DC/config.xml"))
