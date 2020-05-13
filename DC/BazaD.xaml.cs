@@ -34,12 +34,17 @@ namespace DC
                     XAttribute snameAttribute = phoneElement.Attribute("surname");
                     XElement companyElement = phoneElement.Element("computer");
                     XElement priceElement = phoneElement.Element("date");
+                    XElement jobElement = phoneElement.Element("profession");
+                    XElement infoElement = phoneElement.Element("Info");
                     XElement servisTagElement = phoneElement.Element("servistag");
 
                     if (true)
                     {
-                        items.Add(new User() { Name = nameAttribute.Value, Surname = snameAttribute.Value, Computer = companyElement.Value, Date = priceElement.Value, ServisTag = servisTagElement.Value });
-                        users.Add(new User() { Name = nameAttribute.Value, Surname = snameAttribute.Value, Computer = companyElement.Value, Date = priceElement.Value, ServisTag = servisTagElement.Value });
+                        items.Add(new User() { Name = nameAttribute.Value, Surname = snameAttribute.Value, Computer = companyElement.Value,
+                            Date = priceElement.Value, ServisTag = servisTagElement.Value, Job = jobElement.Value, Info = infoElement.Value });
+
+                        users.Add(new User() { Name = nameAttribute.Value, Surname = snameAttribute.Value,
+                            Computer = companyElement.Value, Date = priceElement.Value, ServisTag = servisTagElement.Value });
                     }
                 }
                 lvUsers.ItemsSource = items;
@@ -111,6 +116,14 @@ namespace DC
             System.Diagnostics.Process.Start(@"C:/DC/config.xml");
         }
 
+        private void ExportWord_Click(object sender, RoutedEventArgs e) //Button Export to Word
+        {
+            User user = lvUsers.SelectedItem as User;
+
+            ExportWord exportWord = new ExportWord();
+            exportWord.CreateWordDocument(user);
+        }
+
 
         private void ExportExel_Click(object sender, RoutedEventArgs e) //Button Export to Exel
         {
@@ -150,6 +163,8 @@ namespace DC
 		public string Computer { get; set; }
 		public string ServisTag { get; set; }
 		public string Date { get; set; }
+        public string Job { get; set; }
+        public string Info { get; set; }
 	
     }
 }

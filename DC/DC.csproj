@@ -135,6 +135,7 @@
     </Compile>
     <Compile Include="Data.cs" />
     <Compile Include="ExportExl.cs" />
+    <Compile Include="ExportWord.cs" />
     <Compile Include="UserControlCreate.xaml.cs">
       <DependentUpon>UserControlCreate.xaml</DependentUpon>
     </Compile>

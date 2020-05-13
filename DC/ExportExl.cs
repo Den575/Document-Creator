@@ -2,6 +2,7 @@
 using System.IO;
 using OfficeOpenXml;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace DC
 {
@@ -19,24 +20,30 @@ namespace DC
 
         public void CreateSpreadsheet()
         {
-            string spreadsheetPath = path;
-            string info = "";
-            File.Delete(spreadsheetPath);
-            FileInfo spreadsheetInfo = new FileInfo(spreadsheetPath);
-
-            ExcelPackage pck = new ExcelPackage(spreadsheetInfo);
-            var activitiesWorksheet = pck.Workbook.Worksheets.Add("Users");
-            foreach(var s in data)
+            try
             {
-                info += $"{s.Name};{s.Surname};{s.Date};{s.Computer};{s.ServisTag};";
+                string spreadsheetPath = path;
+                string info = "";
+                File.Delete(spreadsheetPath);
+                FileInfo spreadsheetInfo = new FileInfo(spreadsheetPath);
+
+                ExcelPackage pck = new ExcelPackage(spreadsheetInfo);
+                var activitiesWorksheet = pck.Workbook.Worksheets.Add("Users");
+                foreach (var s in data)
+                {
+                    info += $"{s.Name};{s.Surname};{s.Date};{s.Computer};{s.ServisTag};";
+                }
+                activitiesWorksheet.Cells["A1"].Value = info;
+                activitiesWorksheet.Cells["A1:D1"].Style.Font.Bold = false;
+
+                activitiesWorksheet.View.FreezePanes(2, 1);
+
+                pck.Save();
             }
-            activitiesWorksheet.Cells["A1"].Value = info;
-            activitiesWorksheet.Cells["A1:D1"].Style.Font.Bold = false;
-
-            activitiesWorksheet.View.FreezePanes(2, 1);
-
-            pck.Save();
-
+            catch(System.IO.IOException)
+            {
+                MessageBox.Show("Plik już został otwarty!");
+            }
         }
 
         public void Openfile()

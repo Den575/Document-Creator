@@ -153,6 +153,8 @@ namespace DC
                     new XAttribute("surname", data.SName),
                     new XElement("computer", ComputerName),
                     new XElement("date", Date),
+                    new XElement("profession", data.Proffesion),
+                    new XElement("Info", RichTextB()),
                     new XElement("servistag", data.ServisTag)));
                 xdoc.Save("C:/DC/config.xml");
 
@@ -213,7 +215,6 @@ namespace DC
         private string RichTextB()
         {
             TextRange textRange = new TextRange(rtbInfo.Document.ContentStart, rtbInfo.Document.ContentEnd);
-            MessageBox.Show(textRange.Text);
             return textRange.Text;
         }
 
