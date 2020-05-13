@@ -24,7 +24,7 @@ namespace DC
         private static string Сity { get; set; }
 
         private string SaveIn { get; set; }
-        private string OpenIn { get; set; }
+        private string OpenIn { get; } = "C:/DC/WZOR.docx";
 
         private static string Date = DateTime.Now.ToShortDateString();
 
@@ -32,6 +32,7 @@ namespace DC
         public UserControlHome()
         {
             InitializeComponent();
+            
         }
 
         private void ComboBox_Selected(object sender, RoutedEventArgs e) //Lista Computer
@@ -93,7 +94,7 @@ namespace DC
                 return;
             }
 
-            Data data = new Data() { Name = char.ToUpper(tbName.Text[0]) + tbName.Text.Substring(1), SName = char.ToUpper(tbSName.Text[0]) + tbSName.Text.Substring(1), Proffesion = tbPosition.Text, ServisTag = tbServisTag.Text.ToUpper() };
+            Data data = new Data() { Name = char.ToUpper(tbName.Text[0]) + tbName.Text.Substring(1).ToLower(), SName = char.ToUpper(tbSName.Text[0]) + tbSName.Text.Substring(1).ToLower(), Proffesion = tbPosition.Text, ServisTag = tbServisTag.Text.ToUpper() };
 
 
             using (var sr = new StreamReader("C:/DC/savein.txt"))
@@ -111,10 +112,6 @@ namespace DC
             XDocument xdoc = XDocument.Load("C:/DC/config.xml");
             XElement root = xdoc.Element("computers");
 
-            using (var sw = new StreamReader("C:/DC/openin.txt"))
-            {
-                OpenIn = sw.ReadToEnd();
-            }
 
             btnCreate.Cursor = Cursors.Wait;
 
@@ -128,6 +125,8 @@ namespace DC
                 wordApp.Visible = false;
 
                 var wordDocument = wordApp.Documents.Open(OpenIn);
+
+
 
                 ReplaceWordApp("<name>", data.NarzednikImie(data.Name), wordDocument);
                 ReplaceWordApp("<stanowisko>", data.Proffesion, wordDocument);
@@ -152,7 +151,7 @@ namespace DC
                     new XElement("servistag", data.ServisTag)));
                 xdoc.Save("C:/DC/config.xml");
 
-                wordDocument.SaveAs($"{SaveIn}{data.Name} {data.SName}.docx"); //TODO: Niepoprawnie 
+                wordDocument.SaveAs($"{SaveIn}{data.Name} {data.SName}.docx");
                 wordApp.Visible = true;
 
 
@@ -161,7 +160,7 @@ namespace DC
             catch (System.Runtime.InteropServices.COMException)
             {
 
-                MessageBox.Show("Nie mozna znalezc plik wzorzec");
+                MessageBox.Show("Nie mozna znalezc plik wzorzec. Zrestartuj aplikację!");
             }
             catch (Exception ex)
             {
@@ -171,7 +170,7 @@ namespace DC
 
 
 
-        private void ReplaceWordApp(string stubToReplace, string text, Microsoft.Office.Interop.Word.Document document) //Zamiena
+        private void ReplaceWordApp(string stubToReplace, string text, Microsoft.Office.Interop.Word.Document document) //Zamiana
         {
             var range = document.Content;
             range.Find.ClearFormatting();
@@ -181,7 +180,7 @@ namespace DC
         public bool CheckedValues() //Sprawdzenie 
         {
            
-            if (string.IsNullOrWhiteSpace(tbName.Text) || string.IsNullOrWhiteSpace(tbSName.Text) || string.IsNullOrWhiteSpace(tbPosition.Text) || string.IsNullOrWhiteSpace(tbPosition.Text))
+            if (string.IsNullOrWhiteSpace(tbName.Text) || string.IsNullOrWhiteSpace(tbSName.Text) || string.IsNullOrWhiteSpace(tbPosition.Text) || string.IsNullOrWhiteSpace(tbServisTag.Text))
             {
                 MessageBox.Show("Wszystkie pola muszą być uzupełnione!");
                 return true;
@@ -209,13 +208,14 @@ namespace DC
         private string RichTextB()
         {
             TextRange textRange = new TextRange(rtbInfo.Document.ContentStart, rtbInfo.Document.ContentEnd);
+            MessageBox.Show(textRange.Text);
             return textRange.Text;
         }
 
 
         private bool FileExists()
         {
-            if (!File.Exists("C:/DC/savein.txt") || !File.Exists("C:/DC/openin.txt"))
+            if (!File.Exists("C:/DC/savein.txt") || !File.Exists("C:/DC/WZOR.docx"))
             {
                 MessageBox.Show("Aplikacja nie została skonfigurowana ERROR 1");
                 return true;

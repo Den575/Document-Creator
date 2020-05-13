@@ -9,19 +9,14 @@
              Background="#FFEBEBEB"
              >
     <Grid Height="550" Width="948" Background="#FFEBEBEB">
-        <TextBlock Foreground="Black" HorizontalAlignment="Left" Margin="38,102,0,0" TextWrapping="Wrap" Text="Save to:" VerticalAlignment="Top" FontSize="20"/>
-        <TextBlock Foreground="Black" HorizontalAlignment="Left" Margin="38,237,0,0" TextWrapping="Wrap" Text="Open template:" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock ToolTip="Można wpisac albo wybrać domysla ścieżkę" Foreground="Black" HorizontalAlignment="Left" Margin="38,102,0,0" TextWrapping="Wrap" Text="Save to:" VerticalAlignment="Top" FontSize="20"/>
 
         <TextBox x:Name="tb_Save" Foreground="Black" HorizontalAlignment="Left" Height="41" Margin="204,88,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="306" FontSize="14"/>
-        <TextBox x:Name="tb_Open" Foreground="Black" HorizontalAlignment="Left" Height="41" Margin="204,223,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="306" FontSize="14"/>
 
         <Button Content="File path" HorizontalAlignment="Left" Margin="538,102,0,0" VerticalAlignment="Top" Width="122" Click="btn_Save"/>
-        <Button Content="File path" HorizontalAlignment="Left" Margin="538,237,0,0" VerticalAlignment="Top" Width="122" Click="btn_Open"/>
         <!--<Image gif:AnimationBehavior.SourceUri="Resources/infoGIF.gif" HorizontalAlignment="Left" Height="212" Margin="86,228,0,0" VerticalAlignment="Top" Width="326"/>-->
-        <Button Click="btnSave_Accept" x:Name="btnSaveAccept" Content="Accept" HorizontalAlignment="Left" Margin="684,102,0,0" VerticalAlignment="Top" Width="110"/>
-        <Button Click="btnOpen_Accept" x:Name="btnOpenAccept" Content="Accept" HorizontalAlignment="Left" Margin="684,237,0,0" VerticalAlignment="Top" Width="110"/>
+        <Button Click="btnSave_Accept" x:Name="btnSaveAccept" Content="Save" HorizontalAlignment="Left" Margin="684,102,0,0" VerticalAlignment="Top" Width="110"/>
         <TextBlock Foreground="Black" HorizontalAlignment="Left" Margin="38,54,0,0" TextWrapping="Wrap" Text="Choose where you want to save the file:" VerticalAlignment="Top" Height="29" Width="548" FontSize="20"/>
-        <TextBlock Foreground="Black" HorizontalAlignment="Left" Margin="38,189,0,0" TextWrapping="Wrap" Text="Choose where the pattern file is located:" VerticalAlignment="Top" Height="29" Width="548" FontSize="20"/>
 
 
     </Grid>

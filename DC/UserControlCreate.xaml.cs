@@ -9,6 +9,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using Excel = Microsoft.Office.Interop.Excel;
 
 
 namespace DC
@@ -17,10 +18,9 @@ namespace DC
     public partial class UserControlCreate : UserControl
     {
 
-        private string saveIn, openIn;
+        private string saveIn;
 
         
-
         public UserControlCreate()
         {
             InitializeComponent();
@@ -59,35 +59,6 @@ namespace DC
             {
                 tb_Save.Text = saveIn;
                 sw.Write(saveIn);
-            }
-        }
-
-        public void btn_Open(object sender, RoutedEventArgs e)
-        {
-
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Open the document template";
-            openFileDialog.Filter = "Docx Files|*.docx";
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                openIn = openFileDialog.FileName;
-                tb_Open.Text = openIn;
-            }
-        }
-
-        public void btnOpen_Accept(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(tb_Open.Text))
-            {
-                MessageBox.Show("Pole musi być uzupełnione!");
-                return;
-            }
-
-            using (var sw = new StreamWriter("C:/DC/openin.txt"))
-            {
-                tb_Open.Text = openIn;
-                sw.Write(openIn);
             }
         }
 

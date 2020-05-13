@@ -27,6 +27,7 @@ namespace DC
 
                 xdoc.Save("C:/DC/config.xml");
             }
+            File.WriteAllBytes("C:/DC/WZOR.docx", Properties.Resources.WZOR);
 
             InitializeComponent();
 
