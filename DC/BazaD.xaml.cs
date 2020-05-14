@@ -138,7 +138,7 @@ namespace DC
             }
 
             ExportExl exl = new ExportExl($"C:/Users/{Environment.UserName}/Downloads/data.xlsx", users);
-            exl.CreateSpreadsheet();
+            exl.CreateSpreadsheet1(users);
             exl.Openfile();
         }
 
