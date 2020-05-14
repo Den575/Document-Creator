@@ -212,10 +212,11 @@ namespace DC
         return false;
         }
 
-        private string RichTextB()
+        private string RichTextB() // Text Info
         {
             TextRange textRange = new TextRange(rtbInfo.Document.ContentStart, rtbInfo.Document.ContentEnd);
-            return textRange.Text;
+            string infoText = textRange.Text.Remove(textRange.Text.Length-1);
+            return infoText;
         }
 
 

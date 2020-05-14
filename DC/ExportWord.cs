@@ -21,8 +21,15 @@ namespace DC
     {
         public void CreateWordDocument(User user)
         {
-            //try
-            //{
+
+            if (File.Exists($"C:/Users/{Environment.UserName}/Downloads/{user.Name} {user.Surname}.docx"))
+            {
+                MessageBox.Show($"C:/Users/{Environment.UserName}/Downloads/{user.Name} {user.Surname}.docx już istnieje!");
+                return;
+            }
+
+            try
+            {
                 Data data = new Data();
 
                 var wordApp = new Microsoft.Office.Interop.Word.Application();
@@ -42,25 +49,25 @@ namespace DC
                 ReplaceWordApp("<date1>", user.Date, wordDocument);
                 ReplaceWordApp("<date2>", user.Date, wordDocument);
                 ReplaceWordApp("<name&surname> ", $"{user.Name} {user.Surname}", wordDocument);
-                ReplaceWordApp("<name&surname1> ", $"{user.Surname} {user.Surname}", wordDocument);
+                ReplaceWordApp("<name&surname1> ", $"{user.Name} {user.Surname}", wordDocument);
                 ReplaceWordApp("<stag> ", user.ServisTag, wordDocument);
                 ReplaceWordApp("<endofword> ", data.EndOfWord(user.Name), wordDocument);
-                ReplaceWordApp("<anotherinfo>", user.Info, wordDocument);
+                ReplaceWordApp("<anotherinfo>", user.Info.Remove(user.Info.Length-1), wordDocument);
 
 
-                wordDocument.SaveAs($"C:/DC/{user.Name} {user.Surname}.docx");
+                wordDocument.SaveAs($"C:/Users/{Environment.UserName}/Downloads/{user.Name} {user.Surname}.docx");
                 wordApp.Visible = true;
-           
-            //}
-            //catch (System.Runtime.InteropServices.COMException)
-            //{
 
-            //    MessageBox.Show("Nie mozna znalezc plik wzorzec. Zrestartuj aplikację!");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Proszę zgłosić błąd:\n" + Convert.ToString(ex));
-            //}
+            }
+            catch (System.Runtime.InteropServices.COMException)
+            {
+
+                MessageBox.Show("Nie mozna znalezc plik wzorzec. Zrestartuj aplikację!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Proszę zgłosić błąd:\n" + Convert.ToString(ex));
+            }
         }
 
 

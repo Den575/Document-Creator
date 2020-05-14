@@ -119,6 +119,10 @@ namespace DC
         private void ExportWord_Click(object sender, RoutedEventArgs e) //Button Export to Word
         {
             User user = lvUsers.SelectedItem as User;
+            if (user == null)
+            {
+                return;
+            }
 
             ExportWord exportWord = new ExportWord();
             exportWord.CreateWordDocument(user);

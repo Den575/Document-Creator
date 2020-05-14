@@ -46,7 +46,7 @@
             <ComboBoxItem Content="Pruszcz Gdański"/>
         </ComboBox>
 
-        <Calendar SelectedDatesChanged="mycalendar_SelectedDatesChanged" x:Name="mycalendar" HorizontalAlignment="Left" Margin="578,54,0,0" VerticalAlignment="Top" Language="en" Width="278" Height="364" FontSize="14" OpacityMask="Black" Background="#FFFAFAFA">
+        <Calendar SelectedDatesChanged="mycalendar_SelectedDatesChanged" x:Name="mycalendar" HorizontalAlignment="Left" Margin="578,54,0,0" VerticalAlignment="Top" Language="en" Width="278" Height="388" FontSize="14" OpacityMask="Black" Background="#FFFAFAFA">
             <Calendar.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFA3AEB9" Offset="0"/>
