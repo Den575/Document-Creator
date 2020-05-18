@@ -28,23 +28,23 @@ namespace DC
 
         public void btn_Save(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Title = "Save files in";
-            if (openFile.ShowDialog() == true)
-            {
+            //OpenFileDialog openFile = new OpenFileDialog();
+            //openFile.Title = "Save files in";
+            //if (openFile.ShowDialog() == true)
+            //{
 
-                DirectoryInfo directoryInfo = new DirectoryInfo(openFile.FileName);
-                saveIn = directoryInfo.FullName;
-                string nameOfFile = directoryInfo.Name;
-                saveIn = saveIn.Replace(nameOfFile, "");
-                saveIn = saveIn.Replace("\\", "/");
-                tb_Save.Text = saveIn;
-            }
+            //    DirectoryInfo directoryInfo = new DirectoryInfo(openFile.FileName);
+            //    saveIn = directoryInfo.FullName;
+            //    string nameOfFile = directoryInfo.Name;
+            //    saveIn = saveIn.Replace(nameOfFile, "");
+            //    saveIn = saveIn.Replace("\\", "/");
+            //    tb_Save.Text = saveIn;
+            //}
 
-            using(var sw = new StreamWriter("C:/DC/savein.txt"))
-            {
-                sw.Write(saveIn);
-            }
+            //using(var sw = new StreamWriter("C:/DC/savein.txt"))
+            //{
+            //    sw.Write(saveIn);
+            //}     
         }
 
 

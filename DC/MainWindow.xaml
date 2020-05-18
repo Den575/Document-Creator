@@ -73,12 +73,12 @@
                             <TextBlock Text="Database" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60" x:Name="ItemSettings">
+                    <!--<ListViewItem Height="60" x:Name="ItemSettings">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Settings" Margin="10" Width="25" Height="25" VerticalAlignment="Center"/>
                             <TextBlock Text="Settings" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
-                    </ListViewItem>
+                    </ListViewItem>-->
                     <ListViewItem Height="60" x:Name="ItemHelp">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Help" Margin="10" Width="25" Height="25" VerticalAlignment="Center"/>

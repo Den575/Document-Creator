@@ -20,7 +20,7 @@ namespace DC
 
     public partial class UserControlHome : UserControl
     {
-        private static string ComputerName { get; set; }
+        private static string ComputerName { get; set; } 
         private static string Сity { get; set; }
 
         private string SaveIn { get; set; }
@@ -32,7 +32,9 @@ namespace DC
         public UserControlHome()
         {
             InitializeComponent();
-            
+            ComboBox1.Text = "Select computer";
+            ComboBox2.Text = "Select city";
+
         }
 
         private void ComboBox_Selected(object sender, RoutedEventArgs e) //Lista Computer
@@ -43,6 +45,7 @@ namespace DC
             }
             catch (NullReferenceException)
             {
+                ComputerName = "Lenovo ThinkBook 13s";
                 return;
             }
 
@@ -66,11 +69,12 @@ namespace DC
                 }
                 else
                 {
-                    Сity = "Kraków";
+                    
                 }
             }
             catch
             {
+                Сity = "Kraków";
                 return;
             }
 
@@ -91,7 +95,7 @@ namespace DC
                 return;
             }
 
-            Data data = new Data() { Name = char.ToUpper(tbName.Text[0]) + tbName.Text.Substring(1).ToLower(), SName = char.ToUpper(tbSName.Text[0]) + tbSName.Text.Substring(1).ToLower(), Proffesion = tbPosition.Text, ServisTag = tbServisTag.Text.ToUpper() };
+            Data data = new Data() { Name = char.ToUpper(tbName.Text[0]) + tbName.Text.Substring(1).ToLower(), SName = char.ToUpper(tbSName.Text[0]) + tbSName.Text.Substring(1), Proffesion = tbPosition.Text.ToUpper(), ServisTag = tbServisTag.Text.ToUpper() };
 
 
             try
@@ -135,7 +139,7 @@ namespace DC
 
                 ReplaceWordApp("<name>", data.NarzednikImie(data.Name), wordDocument);
                 ReplaceWordApp("<stanowisko>", data.Proffesion, wordDocument);
-                ReplaceWordApp("<surname>", data.NarzednikNazwisko(data.SName), wordDocument);
+                ReplaceWordApp("<surname>", data.NarzednikNazwisko(data.Name, data.SName), wordDocument); ;
                 ReplaceWordApp("<computer>", ComputerName, wordDocument);
                 ReplaceWordApp("<date>", Date, wordDocument);
                 ReplaceWordApp("<date1>", Date, wordDocument);
@@ -153,13 +157,17 @@ namespace DC
                     new XAttribute("surname", data.SName),
                     new XElement("computer", ComputerName),
                     new XElement("date", Date),
-                    new XElement("profession", data.Proffesion),
+                    new XElement("profession", data.Proffesion.ToUpper()),
                     new XElement("Info", RichTextB()),
                     new XElement("servistag", data.ServisTag)));
                 xdoc.Save("C:/DC/config.xml");
 
                 wordDocument.SaveAs($"{SaveIn}{data.Name} {data.SName}.docx");
                 wordApp.Visible = true;
+
+                DeleteAllData();
+
+                
 
 
                 btnCreate.Cursor = Cursors.Hand;
@@ -234,6 +242,18 @@ namespace DC
             }
 
             return false;
+        }
+
+        public void DeleteAllData()
+        {
+            tbName.Text = "";
+            tbPosition.Text = "";
+            tbServisTag.Text = "";
+            tbSName.Text = "";
+            TextRange textRange = new TextRange(rtbInfo.Document.ContentStart, rtbInfo.Document.ContentEnd);
+            textRange.Text = "";
+            ComboBox1.Text = "";
+            ComboBox2.Text = "";
         }
     }
 }

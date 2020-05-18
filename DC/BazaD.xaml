@@ -19,10 +19,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="DELETE" HorizontalAlignment="Left" Margin="30,464,0,0" VerticalAlignment="Top" Width="162" Click="Delete_Click" FontSize="16"/>
-        <Button Content="DELETE ALL" HorizontalAlignment="Left" Margin="230,464,0,0" VerticalAlignment="Top" Width="162" Click="DeleteAll_Click" FontSize="16"/>
-        <Button Content="EXPORT TO XML" HorizontalAlignment="Left" Margin="430,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="Export_Click"/>
-        <Button Content="EXPORT TO EXEL" HorizontalAlignment="Left" Margin="630,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="ExportExel_Click"/>
-        <Button Content="SENT TO WORD" HorizontalAlignment="Left" Margin="830,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="ExportWord_Click"/>
+        <Button ToolTip="Usuwa wybrany rekord" Content="DELETE" HorizontalAlignment="Left" Margin="30,464,0,0" VerticalAlignment="Top" Width="162" Click="Delete_Click" FontSize="16"/>
+        <Button ToolTip="Usuwa wszystkie rekordy" Content="DELETE ALL" HorizontalAlignment="Left" Margin="230,464,0,0" VerticalAlignment="Top" Width="162" Click="DeleteAll_Click" FontSize="16"/>
+        <Button ToolTip="Zapisuje wszystkie dane w formacie XML" Content="EXPORT TO XML" HorizontalAlignment="Left" Margin="430,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="Export_Click"/>
+        <Button ToolTip="Zapisuje wszystkie dane w Excel" Content="EXPORT TO EXСEL" HorizontalAlignment="Left" Margin="630,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="ExportExel_Click"/>
+        <Button ToolTip="Wysyła wybrany rekord do Wordu" Content="SENT TO WORD" HorizontalAlignment="Left" Margin="830,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="ExportWord_Click"/>
     </Grid>
 </UserControl>

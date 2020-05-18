@@ -30,6 +30,10 @@ namespace DC
             File.WriteAllBytes("C:/DC/WZOR.docx", Properties.Resources.WZOR);
 
             InitializeComponent();
+            UserControl usc = null;
+            usc = new UserControlHome();
+            GridMain.Children.Add(usc);
+
 
             //this.WindowState = WindowState.Minimized;
         }

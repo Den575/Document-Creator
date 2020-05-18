@@ -42,8 +42,8 @@ namespace DC
 
 
                 ReplaceWordApp("<name>", data.NarzednikImie(user.Name), wordDocument);
-                ReplaceWordApp("<stanowisko>", user.Job, wordDocument);
-                ReplaceWordApp("<surname>", data.NarzednikNazwisko(user.Surname), wordDocument);
+                ReplaceWordApp("<stanowisko>", user.Job.ToUpper(), wordDocument);
+                ReplaceWordApp("<surname>", data.NarzednikNazwisko(user.Name, user.Surname), wordDocument);
                 ReplaceWordApp("<computer>", user.Computer, wordDocument);
                 ReplaceWordApp("<date>", user.Date, wordDocument);
                 ReplaceWordApp("<date1>", user.Date, wordDocument);

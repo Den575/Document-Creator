@@ -43,7 +43,7 @@ namespace DC
                 activitiesWorksheet.Cells["B1"].Value = "Surname";
                 activitiesWorksheet.Cells["C1"].Value = "Date";
                 activitiesWorksheet.Cells["D1"].Value = "Computer";
-                activitiesWorksheet.Cells["E1"].Value = "Sarvis Tag";
+                activitiesWorksheet.Cells["E1"].Value = "Servis Tag";
                 activitiesWorksheet.Cells["A1:E1"].Style.Font.Bold = true;
 
                 // populate spreadsheet with data
