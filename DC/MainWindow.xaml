@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Icon="Files\icon.png"
-        Title="DocumentCreator" Height="600" Width="1080" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White" ResizeMode="CanMinimize" Cursor="Arrow">
+        Title="DocumentCreator" Height="600" Width="1080" WindowStartupLocation="CenterScreen" Foreground="White" ResizeMode="CanMinimize" Cursor="Arrow" Visibility="Visible" WindowStyle="None">
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">

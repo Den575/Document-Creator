@@ -63,6 +63,16 @@ namespace DC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Gif_DC {
+            get {
+                object obj = ResourceManager.GetObject("Gif_DC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap infoGifka {
             get {
                 object obj = ResourceManager.GetObject("infoGifka", resourceCulture);
