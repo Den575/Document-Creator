@@ -5,17 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DC"
              xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
-             mc:Ignorable="d" d:DesignWidth="930"
+             mc:Ignorable="d" d:DesignWidth="1000"
              Background="#FFEBEBEB" Height="506.07">
     <Grid>
-        <ListView Margin="10,10,10,58.6" Name="lvUsers" FontSize="16">
+        <ListView Margin="10,10,10,58.6" Name="lvUsers" FontSize="16" Cursor="Pen">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Surname" Width="210" DisplayMemberBinding="{Binding Surname}" />
                     <GridViewColumn Header="Computer" Width="180" DisplayMemberBinding="{Binding Computer}" />
                     <GridViewColumn Header="Date" Width="170" DisplayMemberBinding="{Binding Date}" />
-                    <GridViewColumn Header="Servis Tag" Width="230" DisplayMemberBinding="{Binding ServisTag}" />
+                    <GridViewColumn Header="Servis Tag" Width="200" DisplayMemberBinding="{Binding ServisTag}" />
                 </GridView>
             </ListView.View>
         </ListView>

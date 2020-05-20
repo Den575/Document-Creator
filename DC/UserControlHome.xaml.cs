@@ -20,8 +20,8 @@ namespace DC
 
     public partial class UserControlHome : UserControl
     {
-        private static string ComputerName { get; set; } 
-        private static string Сity { get; set; }
+        private static string ComputerName { get; set; } = "Lenovo ThinkBook 13s";
+        private static string Сity { get; set; } = "Kraków";
 
         private string SaveIn { get; set; }
         private string OpenIn { get; } = "C:/DC/WZOR.docx";
@@ -125,8 +125,8 @@ namespace DC
             btnCreate.Cursor = Cursors.Wait;
 
 
-            try
-            {
+            //try
+            //{
 
                 var wordApp = new Microsoft.Office.Interop.Word.Application();
 
@@ -171,16 +171,16 @@ namespace DC
 
 
                 btnCreate.Cursor = Cursors.Hand;
-            }
-            catch (System.Runtime.InteropServices.COMException)
-            {
+            //}
+            //catch (System.Runtime.InteropServices.COMException)
+            //{
 
-                MessageBox.Show("Nie mozna znalezc plik wzorzec. Zrestartuj aplikację!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Proszę zgłosić błąd:\n"+Convert.ToString(ex));
-            }
+            //    MessageBox.Show("Nie mozna znalezc plik wzorzec. Zrestartuj aplikację!");
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Proszę zgłosić błąd:\n"+Convert.ToString(ex));
+            //}
         }
 
 
@@ -223,6 +223,10 @@ namespace DC
         private string RichTextB() // Text Info
         {
             TextRange textRange = new TextRange(rtbInfo.Document.ContentStart, rtbInfo.Document.ContentEnd);
+            if (textRange.Text == "")
+            {
+                return "";
+            }
             string infoText = textRange.Text.Remove(textRange.Text.Length-1);
             return infoText;
         }

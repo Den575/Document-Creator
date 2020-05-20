@@ -21,18 +21,47 @@ namespace DC
 
         internal string NarzednikImie(string imie)
         {
-            if (imie[imie.Length - 1] != 'a')
+
+
+            string check = "";
+            foreach(var n in imie)
             {
-                return imie + "em";
+                if(n==' ')
+                {
+                    continue;
+                }
+                else
+                {
+                    check += n;
+                }
             }
-            return Chenger(imie);
+            if (check[check.Length - 1] == 'ł')
+            {
+                return check;
+            }
+            if (check[check.Length - 1] != 'a')
+            {
+                return check + "em";
+            }
+            return Chenger(check);
         }
 
         internal string NarzednikNazwisko(string imie, string nazwisko)
         {
-            
+            string check = "";
+            foreach(var n in nazwisko)
+            {
+                if(n==' ')
+                {
+                    continue;
+                }
+                else
+                {
+                    check += n;
+                }
+            }
 
-            string[] surnames = nazwisko.Split('-');
+            string[] surnames = check.Split('-');
             string nazwiska ="";
             List<string> znaczenia = new List<string>();
             foreach(string s in surnames)
