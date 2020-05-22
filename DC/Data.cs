@@ -21,8 +21,6 @@ namespace DC
 
         internal string NarzednikImie(string imie)
         {
-
-
             string check = "";
             foreach(var n in imie)
             {
@@ -34,10 +32,6 @@ namespace DC
                 {
                     check += n;
                 }
-            }
-            if (check[check.Length - 1] == 'ł')
-            {
-                return check;
             }
             if (check[check.Length - 1] != 'a')
             {
