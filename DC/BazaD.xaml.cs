@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using System.Xml.Linq;
 
 namespace DC
@@ -24,30 +27,49 @@ namespace DC
         {
             List<User> items = new List<User>();
             users.Clear();
+            List<Button> buttonList = new List<Button> { btnDelete, btnDeleteAll, btnXML, btnCSV, btnWord };
+            foreach(var b in buttonList)
+            {
+                b.IsEnabled = false;
+            }
 
             try
             {
+                
                 XDocument xdoc = XDocument.Load("C:/DC/config.xml");
                 foreach (XElement phoneElement in xdoc.Element("computers").Elements("user"))
                 {
+                    
+
                     XAttribute nameAttribute = phoneElement.Attribute("name");
                     XAttribute snameAttribute = phoneElement.Attribute("surname");
                     XElement companyElement = phoneElement.Element("computer");
                     XElement priceElement = phoneElement.Element("date");
                     XElement jobElement = phoneElement.Element("profession");
                     XElement infoElement = phoneElement.Element("Info");
+                    XElement cityElement = phoneElement.Element("city");
                     XElement servisTagElement = phoneElement.Element("servistag");
 
                     if (true)
                     {
+                        btnDelete.IsEnabled = true;
+
                         items.Add(new User() { Name = nameAttribute.Value, Surname = snameAttribute.Value, Computer = companyElement.Value,
-                            Date = priceElement.Value, ServisTag = servisTagElement.Value, Job = jobElement.Value, Info = infoElement.Value });
+                            Date = priceElement.Value, ServisTag = servisTagElement.Value, Job = jobElement.Value, Info = infoElement.Value, City = cityElement.Value });
 
                         users.Add(new User() { Name = nameAttribute.Value, Surname = snameAttribute.Value,
-                            Computer = companyElement.Value, Date = priceElement.Value, ServisTag = servisTagElement.Value });
+                            Computer = companyElement.Value, Date = priceElement.Value, ServisTag = servisTagElement.Value, City = cityElement.Value });
                     }
+
+                    foreach (var b in buttonList)
+                    {
+                        b.IsEnabled = true;
+                    }
+
                 }
+
                 lvUsers.ItemsSource = items;
+                
             }
             catch(Exception)
             {
@@ -169,6 +191,7 @@ namespace DC
 		public string Date { get; set; }
         public string Job { get; set; }
         public string Info { get; set; }
+        public string City { get; set; }
 	
     }
 }

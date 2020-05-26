@@ -19,10 +19,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button ToolTip="Delete the selected record" Content="DELETE" HorizontalAlignment="Left" Margin="30,464,0,0" VerticalAlignment="Top" Width="162" Click="Delete_Click" FontSize="16" Background="#FF1F3D68"/>
-        <Button ToolTip="Delete all records" Content="DELETE ALL" HorizontalAlignment="Left" Margin="230,464,0,0" VerticalAlignment="Top" Width="162" Click="DeleteAll_Click" FontSize="16" Background="#FF1F3D68"/>
-        <Button ToolTip="Save all records in xml file" Content="EXPORT TO XML" HorizontalAlignment="Left" Margin="430,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="Export_Click" Background="#FF1F3D68"/>
-        <Button ToolTip="Save alle records in Excel file" Content="EXPORT TO CSV" HorizontalAlignment="Left" Margin="630,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="ExportExel_Click" Background="#FF1F3D68"/>
-        <Button ToolTip="Create a Word file of the selected record" Content="SENT TO WORD" HorizontalAlignment="Left" Margin="830,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="ExportWord_Click" Background="#FF1F3D68"/>
+        <Button x:Name="btnDelete" ToolTip="Delete the selected record" Content="DELETE" HorizontalAlignment="Left" Margin="30,464,0,0" VerticalAlignment="Top" Width="162" Click="Delete_Click" FontSize="16" Background="#FF1F3D68"/>
+        <Button x:Name="btnDeleteAll" ToolTip="Delete all records" Content="DELETE ALL" HorizontalAlignment="Left" Margin="230,464,0,0" VerticalAlignment="Top" Width="162" Click="DeleteAll_Click" FontSize="16" Background="#FF1F3D68"/>
+        <Button x:Name="btnXML" ToolTip="Save all records in xml file" Content="EXPORT TO XML" HorizontalAlignment="Left" Margin="430,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="Export_Click" Background="#FF1F3D68"/>
+        <Button x:Name="btnCSV" ToolTip="Save alle records in Excel file" Content="EXPORT TO CSV" HorizontalAlignment="Left" Margin="630,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="ExportExel_Click" Background="#FF1F3D68"/>
+        <Button x:Name="btnWord" ToolTip="Create a Word file of the selected record" Content="SENT TO WORD" HorizontalAlignment="Left" Margin="830,464,0,0" VerticalAlignment="Top" Width="162" FontSize="16" Click="ExportWord_Click" Background="#FF1F3D68"/>
     </Grid>
 </UserControl>

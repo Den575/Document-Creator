@@ -21,7 +21,8 @@ namespace DC
     public partial class UserControlHome : UserControl
     {
         private static string ComputerName { get; set; } = "Lenovo ThinkBook 13s";
-        private static string Сity { get; set; } = "Kraków";
+        private static string Сity { get; set; } = "Krakowie";
+        private static string СityForm2 { get; set; } = "Kraków";
 
         private string SaveIn { get; set; }
         private string OpenIn { get; } = "C:/DC/WZOR.docx";
@@ -58,14 +59,17 @@ namespace DC
                 Сity = (ComboBox2.SelectedItem as ComboBoxItem).Content.ToString();
                 if (Сity == "Krakow") {
                     Сity = "Krakowie";
+                    СityForm2 = "Kraków";
                 }
                 else if (Сity == "Gdańsk")
                 {
                     Сity = "Gdańsku";
+                    СityForm2 = "Gdańsk";
                 }
                 else if(Сity== "Pruszcz Gdański")
                 {
                     Сity = "Pruszczu Gdańskim";
+                    СityForm2 = "Przuszcz Gdański";
                 }
                 else
                 {
@@ -74,7 +78,8 @@ namespace DC
             }
             catch
             {
-                Сity = "Kraków";
+                Сity = "Krakowie";
+                СityForm2 = "Kraków";
                 return;
             }
 
@@ -125,8 +130,8 @@ namespace DC
             btnCreate.Cursor = Cursors.Wait;
 
 
-            //try
-            //{
+            try
+            {
 
                 var wordApp = new Microsoft.Office.Interop.Word.Application();
 
@@ -144,11 +149,14 @@ namespace DC
                 ReplaceWordApp("<date>", Date, wordDocument);
                 ReplaceWordApp("<date1>", Date, wordDocument);
                 ReplaceWordApp("<date2>", Date, wordDocument);
-                ReplaceWordApp("<name&surname> ", $"{data.Name} {data.SName}", wordDocument);
-                ReplaceWordApp("<name&surname1> ", $"{data.Name} {data.SName}", wordDocument);
-                ReplaceWordApp("<stag> ", data.ServisTag, wordDocument);
+                ReplaceWordApp("<date3>", Date, wordDocument);
+                ReplaceWordApp("<name&surname>", $"{data.Name} {data.SName}", wordDocument);
+                ReplaceWordApp("<name&surname1>", $"{data.Name} {data.SName}", wordDocument);
+                ReplaceWordApp("<stag>", data.ServisTag, wordDocument);
                 ReplaceWordApp("<endofword> ", data.EndOfWord(data.Name), wordDocument);
                 ReplaceWordApp("<anotherinfo>", RichTextB(), wordDocument);
+                ReplaceWordApp("<city>", Сity, wordDocument);
+                ReplaceWordApp("<city2>", СityForm2, wordDocument);
 
 
 
@@ -159,6 +167,7 @@ namespace DC
                     new XElement("date", Date),
                     new XElement("profession", data.Proffesion.ToUpper()),
                     new XElement("Info", RichTextB()),
+                    new XElement("city", Сity),
                     new XElement("servistag", data.ServisTag)));
                 xdoc.Save("C:/DC/config.xml");
 
@@ -171,16 +180,16 @@ namespace DC
 
 
                 btnCreate.Cursor = Cursors.Hand;
-            //}
-            //catch (System.Runtime.InteropServices.COMException)
-            //{
+        }
+            catch (System.Runtime.InteropServices.COMException)
+            {
 
-            //    MessageBox.Show("Nie mozna znalezc plik wzorzec. Zrestartuj aplikację!");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Proszę zgłosić błąd:\n"+Convert.ToString(ex));
-            //}
+                MessageBox.Show("Nie mozna znalezc plik wzorzec. Zrestartuj aplikację!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Proszę zgłosić błąd:\n"+Convert.ToString(ex));
+            }
         }
 
 

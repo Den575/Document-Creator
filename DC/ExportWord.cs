@@ -39,8 +39,6 @@ namespace DC
 
                 var wordDocument = wordApp.Documents.Open("C:/DC/WZOR.docx");
 
-
-
                 ReplaceWordApp("<name>", data.NarzednikImie(user.Name), wordDocument);
                 ReplaceWordApp("<stanowisko>", user.Job.ToUpper(), wordDocument);
                 ReplaceWordApp("<surname>", data.NarzednikNazwisko(user.Name, user.Surname), wordDocument);
@@ -48,11 +46,14 @@ namespace DC
                 ReplaceWordApp("<date>", user.Date, wordDocument);
                 ReplaceWordApp("<date1>", user.Date, wordDocument);
                 ReplaceWordApp("<date2>", user.Date, wordDocument);
-                ReplaceWordApp("<name&surname> ", $"{user.Name} {user.Surname}", wordDocument);
-                ReplaceWordApp("<name&surname1> ", $"{user.Name} {user.Surname}", wordDocument);
-                ReplaceWordApp("<stag> ", user.ServisTag, wordDocument);
+                ReplaceWordApp("<date3>", user.Date, wordDocument);
+                ReplaceWordApp("<name&surname>", $"{user.Name} {user.Surname}", wordDocument);
+                ReplaceWordApp("<name&surname1>", $"{user.Name} {user.Surname}", wordDocument);
+                ReplaceWordApp("<stag>", user.ServisTag, wordDocument);
                 ReplaceWordApp("<endofword> ", data.EndOfWord(user.Name), wordDocument);
                 ReplaceWordApp("<anotherinfo>", user.Info.Remove(user.Info.Length-1), wordDocument);
+                ReplaceWordApp("<city>", GetCity(user.City), wordDocument);
+                ReplaceWordApp("<city2>", user.City, wordDocument);
 
 
                 wordDocument.SaveAs($"C:/Users/{Environment.UserName}/Downloads/{user.Name} {user.Surname}.docx");
@@ -76,6 +77,23 @@ namespace DC
             var range = document.Content;
             range.Find.ClearFormatting();
             range.Find.Execute(FindText: stubToReplace, ReplaceWith: text);
+        }
+
+        private string GetCity(string city)
+        {
+            if (city == "Kraków")
+            {
+                return "Krakowie";
+            }
+            if(city == "Pruszcz Gdański")
+            {
+                return "Pruszczu Gdańskim";
+            }
+            else if(city == "Gdańsk")
+            {
+                return "Gdańsku";
+            }
+            return "Krakowie";
         }
 
     }
