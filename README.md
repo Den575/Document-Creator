@@ -1,5 +1,5 @@
 # Document-Creator
-Desktop App
+Desktop App for generate Word, Excel and XML files.
 1. Main view
 <img src="/images/1.png"/>
 2.
